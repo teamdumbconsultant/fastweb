@@ -6,14 +6,14 @@ const SupportPage = () => {
         <div className="space-y-6 text-primary-text">
           <h2 className="text-2xl font-bold text-primary-text pt-4">Demo Video</h2>
           <div className="max-w-sm mx-auto">
-            <div className="aspect-w-9 aspect-h-16">
+            <div style={{ position: 'relative', paddingBottom: '40%', height: 0 }}>
               <iframe
                 src="https://www.youtube.com/embed/30quUq3K5AY"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                className="w-full h-full"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
               ></iframe>
             </div>
           </div>
