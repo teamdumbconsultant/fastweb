@@ -20,6 +20,11 @@ const Header = () => {
                 Privacy Policy
               </Link>
             </li>
+            <li className="ml-12">
+              <Link href="/support" className="text-primary-text hover:text-accent">
+                Support
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
