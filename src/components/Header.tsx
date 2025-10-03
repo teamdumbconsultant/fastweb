@@ -1,7 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
+import { createClient } from '@/utils/supabase/server';
+import { logout } from '@/app/login/actions';
 
-const Header = () => {
+const Header = async () => {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <header className="bg-white text-primary-text p-4 border-b border-border">
       <div className="container mx-auto flex justify-between items-center">
@@ -9,12 +16,7 @@ const Header = () => {
           AJayji
         </Link>
         <nav>
-          <ul className="flex list-none">
-            {/* <li>
-              <Link href="/" className="text-primary-text hover:text-accent">
-                Home
-              </Link>
-            </li> */}
+          <ul className="flex list-none items-center">
             <li className="ml-12">
               <Link href="/privacy" className="text-primary-text hover:text-accent">
                 Privacy Policy
@@ -25,6 +27,28 @@ const Header = () => {
                 Support
               </Link>
             </li>
+            {user ? (
+              <>
+                <li className="ml-12">
+                  <Link href="/account" className="text-primary-text hover:text-accent">
+                    Account
+                  </Link>
+                </li>
+                <li className="ml-12">
+                  <form action={logout}>
+                    <button className="text-primary-text hover:text-accent cursor-pointer">
+                      Logout
+                    </button>
+                  </form>
+                </li>
+              </>
+            ) : (
+              <li className="ml-12">
+                <Link href="/login" className="text-primary-text hover:text-accent">
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
